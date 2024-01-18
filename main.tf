@@ -9,7 +9,7 @@ resource "aws_cognito_user_pool" "pool" {
   }
 
   email_configuration {
-    email_sending_account = "COGNITO"
+    email_sending_account = "COGNITO_DEFAULT"
   }
 
   schema {
