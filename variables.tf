@@ -4,7 +4,6 @@ variable "user_pool_name" {
 }
 
 variable "auto_verified_attributes" {
-
   default = ["email"]
 }
 
@@ -74,6 +73,16 @@ variable "callback_urls" {
 variable "pw_require_uppercase" {
   type = bool
   default = false
+}
+variable "schemas" {
+  default = [
+    {
+      attribute_data_type = "String",
+      name = "name",
+      mutable = true,
+      required=true
+    }
+  ]
 }
 
 variable "lambda_pc_arn" {

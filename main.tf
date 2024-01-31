@@ -18,11 +18,18 @@ resource "aws_cognito_user_pool" "pool" {
     require_uppercase = var.pw_require_uppercase
   }
 
-  schema {
-    attribute_data_type = var.attribute_data_type
-    name = var.schema_attribute_name
-    mutable = var.schema_mutable
-    required = var.schema_required
+  dynamic "schema" {
+    for_each = var.schemas
+    content {
+      attribute_data_type = schema.value["attribute_data_type"]
+      name = schema.value["name"]
+      mutable = schema.value["mutable"]
+      required = schema.value["required"]
+      string_attribute_constraints {
+        max_length = "2048"
+        min_length = "0"
+      }
+    }
   }
 }
 
